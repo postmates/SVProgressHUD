@@ -408,13 +408,14 @@ CGFloat SVProgressHUDRingThickness = 6;
     
     if(self.alpha != 1) {
         [self registerNotifications];
-        self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1.3, 1.3);
+        const CGFloat kStartScale = 0.9;
+        self.hudView.transform = CGAffineTransformScale(self.hudView.transform, kStartScale, kStartScale);
 
         [UIView animateWithDuration:0.15
                               delay:0
                             options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState
                          animations:^{
-                             self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1/1.3, 1/1.3);
+                             self.hudView.transform = CGAffineTransformScale(self.hudView.transform, 1/kStartScale, 1/kStartScale);
                              self.alpha = 1;
                          }
                          completion:^(BOOL finished){
